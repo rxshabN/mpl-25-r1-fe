@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HARD QUESTION</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="hard-que-style.css">
+</head>
+<body>
+  <!-- Main content of the question page -->
+  <main class="main-container">
+    <div class="glow-card">
+      <div class="card-header">
+        <span class="timer">⏳ Time: <span id="time">40s</span></span>
+        <span class="points">⭐ Points: <span id="points">60</span></span>
+      </div>
+      <div class="question-box">
+        <h5 class="card-title" id="questionText">
+          Given a number n, check if it is a perfect square or not. Return Yes if number is a perfect square and No if it isn't.
+          Given a number n, check if it is a perfect square or not. Return Yes if number is a perfect square and No if it isn't.
+          Given a number n, check if it is a perfect square or not. Return Yes if number is a perfect square and No if it isn't.
+          Given a number n, check if it is a perfect square or not. Return Yes if number is a perfect square and No if it isn't.
+          Given a number n, check if it is a perfect square or not. Return Yes if number is a perfect square and No if it isn't.
+          Given a number n, check if it is a perfect square or not. Return Yes if number is a perfect square and No if it isn't.
+        </h5>
+      </div>
+      <form id="queForm">
+        <div class="d-grid">
+          <button type="submit" class="glow-button">DONE</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Timeout Overlay -->
+  <div id="timeout-overlay" class="overlay hidden">
+    <div class="timeout-card">
+      <h2 class="timeout-title">Time Out!</h2>
+      <p class="timeout-subtitle">The shadows claim this round.</p>
+    </div>
+  </div>
+
+  <!-- Enter Code Overlay -->
+  <div id="code-overlay" class="overlay hidden">
+    <div class="code-card">
+      <button class="close-button">&times;</button>
+      <h2 class="code-title">ENTER THE CODE</h2>
+      <p class="code-subtitle">Enter the secret code to verify your answer.</p>
+      <form id="code-submit-form">
+        <input type="text" id="code-input" class="code-input" placeholder="Your Code Here..." required>
+        <button id="code-submit-button" type="submit" class="glow-button modal-button">VERIFY</button>
+      </form>
+      <p id="feedback-message" class="feedback-message"></p>
+    </div>
+  </div>
+
+  <!-- Success Overlay -->
+  <div id="success-overlay" class="overlay hidden">
+    <div class="success-card">
+      <button class="close-button">&times;</button>
+      <h2 class="success-title">Success!</h2>
+      <p class="success-subtitle">You have solved this question.</p>
+    </div>
+  </div>
+  
+  <script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
+  <script src="/webjars/stomp-websocket/2.3.4/stomp.min.js"></script>
+
+  <!-- External JavaScript -->
+  <script src="hard-que-script.js"></script>
+</body>
+</html>
