@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MYSTERY QUESTION</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@500;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mystery-que-style.css" />
+</head>
+<body>
+  <!-- Main content container -->
+  <main class="main-container">
+    <div class="glow-card">
+      <div class="card-header">
+        <span id="difficulty">Difficulty</span>
+        <!--
+        <span class="points">⭐ Points: <span id="points">0</span></span>
+        -->
+        
+      </div>
+      <div class="question-box">
+        <h5 class="card-title" id="questionText">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor labore voluptatibus maiores id blanditiis doloremque dolores ea, nemo consequuntur officiis nulla esse, obcaecati dolore a ipsam aspernatur exercitationem similique ipsa rerum voluptas. Dolorem cumque, enim beatae reiciendis quibusdam qui ab deserunt aliquid veritatis deleniti alias, itaque dolore error quaerat doloremque asperiores! Ipsam, soluta impedit id sed voluptate nam voluptatibus nesciunt cupiditate, commodi aut rerum illum, maxime ab ipsa molestias dolore qui officia alias natus explicabo. Nesciunt non, pariatur repellendus neque adipisci veniam quasi dolorem qui, natus sunt laboriosam! Consequuntur odit debitis ad suscipit eos a esse ipsum minus at tenetur?
+        </h5>
+      </div>
+      <form id="queForm">
+        <div class="button-group">
+          <div class="d-grid">
+            <button type="submit" class="glow-button">DONE</button>
+          </div>
+          <!-- <div class="d-grid">
+            <button type="button" class="glow-button" id="glow-button-quit">QUIT</button>
+          </div> -->
+        </div>
+      </form>
+      <h3 class="card-footer" id="codeText">
+        Loading code phrase...
+      </h5>
+    </div>
+  </main>
+
+  <!-- Overlay for blurred background effect -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <!-- Modal for entering the code -->
+  <div class="modal" id="codeModal">
+    <button class="close-button">&times;</button>
+    <h2 class="modal-title">ENTER THE CODE</h2>
+    <p class="modal-subtitle">Enter the secret code to verify your answer.</p>
+    <form id="codeSubmitForm">
+      <input type="text" id="codeInput" class="code-input" placeholder="Your Code Here..." required />
+      <button type="submit" class="glow-button modal-button">VERIFY</button>
+      <!-- ADDED: This paragraph will display the error message -->
+      <p id="feedbackMessage" class="feedback-message"></p>
+    </form>
+  </div>
+
+  <!-- Modal for success message -->
+  <div class="modal" id="successModal">
+    <button class="close-button">&times;</button>
+    <h2 class="modal-title success-title">SUCCESS!</h2>
+    <p class="modal-subtitle">Congratulations! You have successfully solved this mystery question.</p>
+  </div>
+
+  <!-- Exit Overlay -->
+  <!-- <div id="exit-overlay" class="overlay hidden">
+    <div class="exit-card">
+      <h2 class="exit-title">Exit!</h2>
+      <p class="exit-subtitle">You exited.</p>
+    </div>
+  </div> -->
+  
+  <script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
+  <script src="/webjars/stomp-websocket/2.3.4/stomp.min.js"></script>
+
+  <!-- Link to the JavaScript file -->
+  <script src="mystery-que.js"></script>
+</body>
+</html>
