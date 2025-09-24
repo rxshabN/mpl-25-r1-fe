@@ -6,7 +6,7 @@ const teamIdInput = document.getElementById("teamId");
 const leaderboardRows = document.getElementById("leaderboardRows");
 
 // URL TO GET TEAMS
-const API_BASE_URL = "http://10.28.63.196:8000";// Using a placeholder URL
+const API_BASE_URL = "https://mpl-25-r1-be.onrender.com";// Using a placeholder URL
 
 // Global state for teams, populated by the fetch call.
 let teams = [];

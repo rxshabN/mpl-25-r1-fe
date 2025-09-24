@@ -1,19 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Inject Data from Login ---
+  let stompClient = null;
+
+  const connectWebSocket = (teamName) => {
+    const socket = new SockJS("https://mpl-25-r1-be.onrender.com/ws");
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, (frame) => {
+      console.log("Connected: " + frame);
+      stompClient.subscribe(
+        `/topic/time/${teamName.replace(" ", "")}`,
+        (message) => {
+          const response = JSON.parse(message.body);
+          console.log("Received message:", response);
+          // Here you would update your UI elements with the new data
+          // For example, to update the points and time:
+          // document.getElementById('points').textContent = response.updatedPoints;
+          // document.getElementById('time').textContent = response.updatedTime;
+        }
+      );
+    });
+  };
+
   const mysteryData = JSON.parse(localStorage.getItem("mysteryData"));
 
-  const apiUrl = "http://10.28.63.196:8000";
+  const apiUrl = "https://mpl-25-r1-be.onrender.com";
 
   if (mysteryData) {
     const difficultyEl = document.getElementById("difficulty");
 
-    // Reset classes
     difficultyEl.className = "";
 
-    // Set text
     difficultyEl.textContent = mysteryData.difficulty;
 
-    // Apply class based on difficulty
     switch (mysteryData.difficulty) {
       case "Easy":
         difficultyEl.classList.add("type1");
@@ -36,6 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update code phrase
     document.getElementById("codeText").textContent = mysteryData.mysteryCode;
+
+    // Call the WebSocket connection function with the team name
+    connectWebSocket(mysteryData.teamName);
   } else {
     console.error("No mystery data found in localStorage!");
   }
@@ -103,14 +123,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Event Listeners ---
 
   // 1. Open code modal when "DONE" is clicked
-  queForm.addEventListener("submit", async(e) => {
+  queForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     openModal(codeModal);
 
     try {
       const formData = {
         teamName: mysteryData.teamName,
-        mysteryCompletionStatus: "DONE"
+        mysteryCompletionStatus: "DONE",
       };
 
       const response = await fetch(`${apiUrl}/mysteryQuestion/result`, {

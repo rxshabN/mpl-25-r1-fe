@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // IMPORTANT: Replace this placeholder with your actual REST API URL
-    const apiUrl = "http://10.28.63.196:8000";
+    const apiUrl = "https://mpl-25-r1-be.onrender.com";
 
     console.log("Sending data to API...", formData);
 
@@ -32,9 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Success:", result);
 
       // Save both backend response + formData in localStorage
-      localStorage.setItem("hardData", JSON.stringify({
-        ...result
-      }));
+      localStorage.setItem(
+        "hardData",
+        JSON.stringify({
+          ...result,
+        })
+      );
 
       //const result = await response.json();
       console.log("Success:", result);
