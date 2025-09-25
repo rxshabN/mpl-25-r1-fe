@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // IMPORTANT: Replace this placeholder with your actual REST API URL
+    //https://mpl-25-r1-be.onrender.com
     const apiUrl = "https://mpl-25-r1-be.onrender.com";
 
     console.log("Sending data to API...", formData);

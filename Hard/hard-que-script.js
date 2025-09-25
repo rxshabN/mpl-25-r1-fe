@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  let totalSeconds = 0;
+  let totalSeconds = 30 * 60; // 30 minutes in seconds initially
   let timerInterval = null;
 
   // Function to update the timer UI
@@ -161,6 +161,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return hours * 3600 + minutes * 60 + seconds;
   };
+
+  startCountdown(totalSeconds);
+
+  if (hardData && hardData.teamName) {
+    const socket = new SockJS("https://mpl-25-r1-be.onrender.com/ws");
+    const stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, () => {
+      console.log("Connected to WebSocket");
+
+      const topic = `/topic/time/${hardData.teamName.replace(" ", "")}`;
+      stompClient.subscribe(topic, (message) => {
+        const data = JSON.parse(message.body);
+        if (data.updatedTime) {
+          const seconds = parseISODuration(data.updatedTime);
+          startCountdown(seconds); // reset timer
+        }
+      });
+    });
+  }
 
   // --- Timeout Logic (unchanged) ---
   const currentTime = timeElement.textContent.trim();
