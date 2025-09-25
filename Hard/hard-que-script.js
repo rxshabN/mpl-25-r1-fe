@@ -119,9 +119,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  let totalSeconds = 0;
+  let timerInterval = null;
+
+  // Function to update the timer UI
+  const updateTimer = () => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    timeElement.textContent =
+      `${hours.toString().padStart(2,'0')}:` +
+      `${minutes.toString().padStart(2,'0')}:` +
+      `${seconds.toString().padStart(2,'0')}`;
+
+    if (totalSeconds <= 0) {
+      clearInterval(timerInterval);
+      openOverlay(timeoutOverlay);
+    }
+
+    totalSeconds--;
+  };
+
+  // Function to start/restart countdown
+  const startCountdown = (seconds) => {
+    clearInterval(timerInterval);
+    totalSeconds = seconds;
+    updateTimer(); // show immediately
+    timerInterval = setInterval(updateTimer, 1000);
+  };
+
+  // Function to parse ISO 8601 duration like "PT15H57M41.0621421S"
+  const parseISODuration = (duration) => {
+    const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?/;
+    const matches = duration.match(regex);
+    if (!matches) return 0;
+
+    const hours = parseInt(matches[1] || "0");
+    const minutes = parseInt(matches[2] || "0");
+    const seconds = Math.floor(parseFloat(matches[3] || "0"));
+
+    return hours * 3600 + minutes * 60 + seconds;
+  };
+
   // --- Timeout Logic (unchanged) ---
   const currentTime = timeElement.textContent.trim();
   if (currentTime === "0s") {
     openOverlay(timeoutOverlay);
   }
+
+
 });
