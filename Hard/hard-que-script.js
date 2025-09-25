@@ -162,6 +162,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to parse ISO 8601 duration like "PT15H57M41.0621421S"
   const parseISODuration = (duration) => {
+    // If duration is already a number, return it directly
+    if (typeof duration === 'number') {
+      return Math.floor(duration);
+    }
+    
+    // If it's a string that can be parsed as a number, parse it
+    if (typeof duration === 'string' && !isNaN(duration)) {
+      return Math.floor(parseFloat(duration));
+    }
+    
+    // Otherwise, try to parse as ISO 8601 duration
     const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?/;
     const matches = duration.match(regex);
     if (!matches) return 0;
