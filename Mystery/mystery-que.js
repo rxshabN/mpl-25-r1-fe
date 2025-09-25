@@ -203,6 +203,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // QUIT BUTTON
+  const quitButton = document.getElementById("glow-button-quit");
+
+  quitButton.addEventListener("click", async () => {
+    try {
+      const formData = {
+        teamName: mysteryData.teamName,
+        mysteryCompletionStatus: "QUIT",
+      };
+
+      const response = await fetch(`${apiUrl}/mysteryQuestion/result`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const exitOverlay = document.getElementById("exit-overlay");
+      mainContainer.classList.add("blurred");
+      exitOverlay.classList.remove("hidden");
+
+      // Redirect after quit
+      setTimeout(() => {
+        window.location.href = "login-mystery.html";
+      }, 1000);
+
+    } catch (error) {
+      console.error("Error Sending QUIT details to backend:", error);
+    }
+  });
+
+
   // document.getElementById("glow-button-quit").addEventListener("click", () => {
   //   setTimeout(() => {
   //     openOverlay(exitOverlay);
