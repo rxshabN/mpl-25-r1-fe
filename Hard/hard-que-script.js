@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("No data found in localStorage!");
   }
 
-  
   // --- Element Selection ---
   const mainContainer = document.querySelector(".main-container");
   const queForm = document.getElementById("queForm");
@@ -129,9 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const seconds = totalSeconds % 60;
 
     timeElement.textContent =
-      `${hours.toString().padStart(2,'0')}:` +
-      `${minutes.toString().padStart(2,'0')}:` +
-      `${seconds.toString().padStart(2,'0')}`;
+      `${hours.toString().padStart(2, "0")}:` +
+      `${minutes.toString().padStart(2, "0")}:` +
+      `${seconds.toString().padStart(2, "0")}`;
 
     if (totalSeconds <= 0) {
       clearInterval(timerInterval);
@@ -187,6 +186,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (currentTime === "0s") {
     openOverlay(timeoutOverlay);
   }
-
-
 });
