@@ -35,11 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem(
         "hardData",
         JSON.stringify({
+          formData: formData,
           ...result,
         })
       );
 
-      //const result = await response.json();
       console.log("Success:", result);
       window.location.href = "hard-que.html";
     } catch (error) {
