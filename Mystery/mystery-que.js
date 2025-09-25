@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("questionText").textContent = mysteryData.question;
 
     // Update code phrase
-    document.getElementById("codeText").textContent = mysteryData.mysteryCode;
+    // document.getElementById("codeText").textContent = mysteryData.mysteryCode;
 
     // Call the WebSocket connection function with the team name
     connectWebSocket(mysteryData.teamName);
