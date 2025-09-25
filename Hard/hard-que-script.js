@@ -102,9 +102,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (result.success === true) {
       closeAllOverlays();
-      //setTimeout(() => {
-      //  openOverlay(successOverlay);
-      //}, 500); // Wait for close animation
+      try {
+        await fetch("https://mpl-25-r1-be.onrender.com/question/result", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            status: "done",
+            teamName: hardData.teamName,
+          }),
+        });
+      } catch (error) {
+        console.error("Failed to send question result:", error);
+      }
       window.location.href = "victory.html";
     } else {
       feedbackMessage.textContent = "Incorrect code. Please try again.";

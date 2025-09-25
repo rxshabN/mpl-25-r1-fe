@@ -96,7 +96,7 @@ body {
   color: #e0eaff;
   line-height: 1.5;
   text-shadow: 0 0 10px rgba(0, 213, 255, 0.6);
-  font-family: "Orbitron", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
@@ -361,9 +361,9 @@ body {
 }
 
 .question-box {
-  max-height: 200px;        /* Adjust height depending on card size */
-  overflow-y: auto;         /* Enables vertical scroll */
-  padding-right: 10px;      /* Prevent text from covering scrollbar */
+  max-height: 200px; /* Adjust height depending on card size */
+  overflow-y: auto; /* Enables vertical scroll */
+  padding-right: 10px; /* Prevent text from covering scrollbar */
   margin: 1rem;
 }
 

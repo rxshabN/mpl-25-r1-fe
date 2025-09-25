@@ -123,30 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Event Listeners ---
 
   // 1. Open code modal when "DONE" is clicked
-  queForm.addEventListener("submit", async (e) => {
+  queForm.addEventListener("submit", (e) => {
     e.preventDefault();
     openModal(codeModal);
-
-    try {
-      const formData = {
-        teamName: mysteryData.teamName,
-        mysteryCompletionStatus: "DONE",
-      };
-
-      const response = await fetch(`${apiUrl}/mysteryQuestion/result`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Error Sending details to backend:", error);
-    }
   });
 
   // 2. Close modals when close buttons are clicked
@@ -181,6 +160,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // The API now returns a `success` boolean
     if (result.success === true) {
+      try {
+        const formData = {
+          teamName: mysteryData.teamName,
+          mysteryCompletionStatus: "DONE",
+        };
+
+        const response = await fetch(`${apiUrl}/mysteryQuestion/result`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error("Error Sending details to backend:", error);
+      }
+
       closeModal();
       setTimeout(() => {
         openModal(successModal);
