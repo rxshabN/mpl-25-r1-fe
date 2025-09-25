@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify({
             status: "done",
-            teamName: hardData.teamName,
+            teamName: hardData.formData.teamName,
           }),
         });
       } catch (error) {
@@ -175,25 +175,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startCountdown(totalSeconds);
 
-  if (hardData && hardData.teamName) {
+  if (hardData && hardData.formData.teamName) {
     const socket = new SockJS("https://mpl-25-r1-be.onrender.com/ws");
     const stompClient = Stomp.over(socket);
 
-    stompClient.connect({}, () => {
+    const onConnect = () => {
       console.log("Connected to WebSocket");
 
-      const topic = `/topic/time/${hardData.teamName.replace(" ", "")}`;
+      const topic = `/topic/time/${hardData.formData.teamName.replace(
+        /\s+/g,
+        ""
+      )}`;
       stompClient.subscribe(topic, (message) => {
-        const data = JSON.parse(message.body);
-        if (data.updatedTime) {
-          const seconds = parseISODuration(data.updatedTime);
-          startCountdown(seconds); // reset timer
-        }
-        if (data.updatedPoints) {
-          pointsElement.textContent = data.updatedPoints;
+        try {
+          const data = JSON.parse(message.body);
+          console.log("Received data:", data); // Log received data for debugging
+
+          if (data.updatedTime) {
+            const seconds = parseISODuration(data.updatedTime);
+            startCountdown(seconds); // reset timer
+          }
+          if (data.updatedPoints) {
+            pointsElement.textContent = data.updatedPoints;
+          }
+        } catch (e) {
+          console.error("Error parsing message body:", e);
         }
       });
-    });
+    };
+
+    const onError = (error) => {
+      console.error(
+        "STOMP connection error: ",
+        error.headers ? error.headers.message : error
+      );
+      // Optionally, you could try to reconnect here after a delay
+    };
+
+    stompClient.connect({}, onConnect, onError);
   }
 
   // --- Timeout Logic (unchanged) ---
