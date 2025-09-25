@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContainer = document.querySelector(".main-container");
   const queForm = document.getElementById("queForm");
   const timeElement = document.getElementById("time");
+  const pointsElement = document.getElementById("points");
 
   // Overlays
   const timeoutOverlay = document.getElementById("timeout-overlay");
@@ -187,6 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.updatedTime) {
           const seconds = parseISODuration(data.updatedTime);
           startCountdown(seconds); // reset timer
+        }
+        if (data.updatedPoints) {
+          pointsElement.textContent = data.updatedPoints;
         }
       });
     });
