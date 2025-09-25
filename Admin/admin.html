@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Team Leaderboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="admin.css">
-</head>
-<body>
-  <div class="main-container">
-    <div class="glow-card">
-      <h2 class="card-title">Team Leaderboard</h2>
-      <p class="card-subtitle">Top Performers of the Season</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Leaderboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="glow-card">
+        <h2 class="card-title">Team Leaderboard</h2>
+        <p class="card-subtitle">Top Performers of the Season</p>
 
-      <div class="card-body">
-        <div class="leaderboard-header">
-          <span class="serial-col">No.</span>
-          <span class="team-col">Team Name</span>
-          <span class="points-col">Points</span>
+        <div class="card-body">
+          <div class="leaderboard-header">
+            <span class="serial-col">No.</span>
+            <span class="team-col">Team Name</span>
+            <span class="points-col">Points</span>
+          </div>
+
+          <div id="leaderboardRows"></div>
         </div>
 
-        <div id="leaderboardRows"></div>
-      </div>
-
-      <button class="sort-btn" onclick="sortTeams()">Sort</button>
-    </div>
-  </div>
-
-  <div id="editModal" class="modal">
-    <div class="modal-content">
-      <h3>Team Management</h3>
-      <input type="hidden" id="teamId">
-      <input type="text" id="teamName" placeholder="Team Name">
-      <input type="number" id="teamPoints" placeholder="Points">
-      <div class="modal-buttons">
-        <button class="btn-edit" onclick="editTeam()">Edit</button>
-        <button class="btn-delete" onclick="confirmDelete()">Delete</button>
-      </div>
-      <button class="btn-close" onclick="closeModal()">Cancel</button>
-    </div>
-  </div>
-
-  <div id="deleteModal" class="modal delete-modal">
-    <div class="modal-content">
-      <h3>Are you sure you want to delete this team?</h3>
-      <div class="modal-buttons">
-        <button class="btn-delete" onclick="deleteTeam()">Yes, Delete</button>
-        <button class="btn-close" onclick="closeDeleteModal()">Cancel</button>
+        <button class="sort-btn" onclick="sortTeams()">Sort</button>
       </div>
     </div>
-  </div>
-  <script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
-  <script src="/webjars/stomp-websocket/2.3.4/stomp.min.js"></script>
-  <script src="admin.js"></script>
-</body>
+
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <h3>Team Management</h3>
+        <input type="hidden" id="teamId" />
+        <input type="text" id="teamName" placeholder="Team Name" />
+        <input type="number" id="teamPoints" placeholder="Points" />
+        <div class="modal-buttons">
+          <button class="btn-edit" onclick="editTeam()">Edit</button>
+          <button class="btn-delete" onclick="confirmDelete()">Delete</button>
+        </div>
+        <button class="btn-close" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+
+    <div id="deleteModal" class="modal delete-modal">
+      <div class="modal-content">
+        <h3>Are you sure you want to delete this team?</h3>
+        <div class="modal-buttons">
+          <button class="btn-delete" onclick="deleteTeam()">Yes, Delete</button>
+          <button class="btn-close" onclick="closeDeleteModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="admin.js"></script>
+  </body>
 </html>
