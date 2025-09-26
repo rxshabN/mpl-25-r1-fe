@@ -396,10 +396,12 @@ body {
 
 /* Question area scroll styling */
 .question-box {
-  max-height: 200px;     /* adjust based on card size */
+  max-height: fit-content;     /* adjust based on card size */
   overflow-y: auto;
   padding-right: 10px;
   margin: 1rem;
+  overflow-x: hidden;
+  overflow: visible;
 }
 
 /* Chrome/Edge/Safari custom scrollbar */
@@ -422,8 +424,3 @@ body {
   background: linear-gradient(180deg, #00aaff, #00ffff);
 }
 
-/* Firefox support */
-.question-box {
-  scrollbar-width: thin;
-  scrollbar-color: #00e5ff rgba(0, 20, 40, 0.6);
-}
