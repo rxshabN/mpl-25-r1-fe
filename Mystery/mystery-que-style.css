@@ -424,8 +424,3 @@ body {
   background: linear-gradient(180deg, #00aaff, #00ffff);
 }
 
-/* Firefox support */
-.question-box {
-  scrollbar-width: thin;
-  scrollbar-color: #00e5ff rgba(0, 20, 40, 0.6);
-}
