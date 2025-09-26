@@ -169,6 +169,8 @@ function sortTeams() {
   renderLeaderboard();
 }
 
+
+
 // Closes modals if the user clicks on the background overlay.
 window.onclick = function(e) {
   if (e.target === modal) closeModal();
